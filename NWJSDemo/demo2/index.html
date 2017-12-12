@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+</head>
+
+<body>
+    <script>
+        // 载入原生UI库
+        var gui = require('nw.gui');
+
+        // 创建空菜单
+        var menu = new gui.Menu();
+
+        // 添加菜单项，label为菜单项的显示名
+        menu.append(new gui.MenuItem({ label: 'Item A' }));
+        menu.append(new gui.MenuItem({ label: 'Item B' }));
+        menu.append(new gui.MenuItem({ type: 'separator' }));
+        menu.append(new gui.MenuItem({ label: 'Item C' }));
+
+        // 移除菜单项
+        menu.removeAt(1);
+
+        // 遍历菜单项
+        for (var i = 0; i < menu.items.length; i++) {
+            console.log(menu.items[i]);
+        }
+
+        // 添加菜单项并绑定菜单点击后的回调函数
+        menu.append(new gui.MenuItem({
+            label: 'Click Me',
+            click: function () {
+                // 创建HTML元素
+                var element = document.createElement('div');
+                element.appendChild(document.createTextNode('Clicked OK'));
+                document.body.appendChild(element);
+            }
+        }));
+
+
+        // 弹出上下文菜单
+        document.body.addEventListener('contextmenu', function (ev) {
+            ev.preventDefault();
+            // 在你点击后弹出
+            menu.popup(ev.x, ev.y);
+            return false;
+        }, false);
+
+        // 获取当前窗口
+        var win = gui.Window.get();
+
+        // 创建一个窗口的菜单栏
+        var menubar = new gui.Menu({ type: 'menubar' });
+
+        // 创建一个菜单项
+        var sub1 = new gui.Menu();
+
+
+        sub1.append(new gui.MenuItem({
+            label: 'Test1',
+            click: function () {
+                var element = document.createElement('div');
+                element.appendChild(document.createTextNode('Test 1'));
+                document.body.appendChild(element);
+            }
+        }));
+
+        // 添加子菜单
+        menubar.append(new gui.MenuItem({ label: 'Sub1', submenu: sub1 }));
+
+        // 设置菜单窗口的菜单
+        win.menu = menubar;
+
+        // 添加一个点击事件到已有菜单
+        menu.items[0].click = function () {
+            console.log("CLICK");
+        };
+    </script>
+</body>
+
+</html>

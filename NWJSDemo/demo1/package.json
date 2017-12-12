@@ -1,0 +1,30 @@
+{
+  "name": "nw-demo",
+  "version": "1.0.0",
+  "description": "nw.js demo",
+  "main": "index.html",
+  "window": {
+    "title": "nw-demo",
+    "width": 600,
+    "height": 400,
+    "toolbar": true,
+    "resizable": false,
+    "icon": "img/logo.png"
+  },
+  "build": {
+    "nwVersion": "0.14.7"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "nwjs-builder-phoenix": "^1.14.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "run -x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "dist": "build --tasks win-x86 --mirror https://npm.taobao.org/mirrors/nwjs/ ."
+  },
+  "author": "cjrfan",
+  "license": "ISC"
+}

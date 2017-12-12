@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body onload="process.mainModule.exports.callback0()">
+    <h1>Hello World!</h1>
+    We are using node.js
+    <script>document.write(process.version); </script>
+</body>
+<script>
+    var i = 0;
+    exports.callback0 = function () {
+        console.log(i + ": " + window.location);
+        window.alert("i = " + i);
+        i = i + 1;
+    }
+</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="main" class="main"></div>
+<script src="js/echarts.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    /*var option = {
+     title: {
+     text: 'ECharts 入门实例'
+     },
+     tooltip: {},
+     legend: {
+     data: ['销量', '盈利']
+     },
+     xAxis: {
+     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+     },
+     yAxis: {},
+     series: [
+     {
+     name: '销量',
+     type: 'bar',//柱状图
+     data: [5, 20, 36, 10, 10, 20]
+     },
+     {
+     name: '盈利',
+     type: 'bar',
+     data: [2, 5, 10, 4, 4, 5]
+     }
+     ]
+     };*/
+
+    var option = {
+        backgroundColor: '#2c343c',
+//        textStyle: {
+//            color: 'rgba(255, 255, 255, 0.3)'//文本颜色
+//        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',//饼图
+                radius: '55%',
+                roseType: 'angle',//南丁格尔图
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: 'rgba(255, 255, 255, 0.5)'//单个系列文本颜色
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: 'yellow'//扇形线条颜色
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {//正常展示下样式
+//                        color:'red',//扇形颜色
+                        shadowBlur: 100,//阴影大小
+                        shadowOffsetX: 0,//阴影水平方向上的偏移
+                        shadowOffsetY: 0,//阴影垂直方向上的偏移
+                        shadowColor: 'rgba(0, 0, 0, 0.5)' //阴影颜色
+                    },
+//                    emphasis: {//鼠标 hover 时候的高亮样式
+//                        shadowBlur: 100,
+//                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                    }
+                },
+                visualMap: {
+                    show: false,
+                    min: 80,// 映射的最小值为 80
+                    max: 600,// 映射的最大值为 600
+                    inRange: {
+                        colorLightness: [0, 1] // 明暗度的范围是 0 到 1
+                    }
+                },
+                data: [
+                    {value: 235, name: '视频广告'},
+                    {value: 274, name: '联盟广告'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 335, name: '直接访问'},
+                    {
+                        value: 400,
+                        name: '搜索引擎'/*,
+                     itemStyle:{
+                     normal:{
+                     color:'yellow'
+                     }
+                     }*/
+                    }
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>
