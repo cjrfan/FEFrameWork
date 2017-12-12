@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
+    <style>
+        body {
+            -webkit-app-region: drag;
+        }
+    </style>
 </head>
 
-<body onload="process.mainModule.exports.callback0()">
-    <h1>Hello World!</h1>
-    We are using node.js
-    <script>document.write(process.version); </script>
+<body>
+    <h1>frameless window 测试</h1>
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 
 </html>
