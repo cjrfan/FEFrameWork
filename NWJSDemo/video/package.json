@@ -1,0 +1,22 @@
+{
+    "main": "index.html",
+    "name": "video-demo",
+    "description": "demo app of node-webkit",
+    "version": "1.0.0",
+    "window": {
+        "title": "video demo",
+        "toolbar": true,
+        "frame": true,
+        "width": 800,
+        "height": 550,
+        "position": "center",
+        "min_width": 400,
+        "min_height": 200,
+        "max_width": 1920,
+        "max_height": 1080,
+        "resizable": true
+    },
+    "webkit": {
+        "plugin": true
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // nw.Screen.Init();
+
+        // var screenCB = {
+        //     onDisplayBoundsChanged: function (screen) {
+        //         console.log('displayBoundsChanged', screen);
+        //     },
+
+        //     onDisplayAdded: function (screen) {
+        //         console.log('displayAdded', screen);
+        //     },
+
+        //     onDisplayRemoved: function (screen) {
+        //         console.log('displayRemoved', screen)
+        //     }
+        // };
+
+        // // listen to screen events
+        // nw.Screen.on('displayBoundsChanged', screenCB.onDisplayBoundsChanged);
+        // nw.Screen.on('displayAdded', screenCB.onDisplayAdded);
+        // nw.Screen.on('displayRemoved', screenCB.onDisplayRemoved);
+
+        nw.Screen.Init(); // you only need to call this once
+        nw.Screen.chooseDesktopMedia(["window", "screen"],
+            function (streamId) {
+                var vid_constraint = {
+                    mandatory: {
+                        chromeMediaSource: 'desktop',
+                        chromeMediaSourceId: streamId,
+                        maxWidth: 1920,
+                        maxHeight: 1080
+                    },
+                    optional: []
+                };
+                navigator.webkitGetUserMedia({
+                    audio: false,
+                    video: constraint
+                }, success_func, fallback_func);
+            }
+        );
+
+        // var dcm = nw.Screen.DesktopCaptureMonitor;
+        // nw.Screen.Init();
+        // dcm.on("added", function (id, name, order, type) {
+        //     //select first stream and shutdown
+        //     var constraints = {
+        //         audio: {
+        //             mandatory: {
+        //                 chromeMediaSource: "system",
+        //                 chromeMediaSourceId: dcm.registerStream(id)
+        //             }
+        //         },
+        //         video: {
+        //             mandatory: {
+        //                 chromeMediaSource: 'desktop',
+        //                 chromeMediaSourceId: dcm.registerStream(id)
+        //             }
+        //         }
+        //     };
+
+        //     // TODO: call getUserMedia with contraints
+
+        //     dcm.stop();
+        // });
+
+        // dcm.on("removed", function (id) {});
+        // dcm.on("orderchanged", function (id, new_order, old_order) {});
+        // dcm.on("namechanged", function (id, name) {});
+        // dcm.on("thumbnailchanged", function (id, thumbnail) {});
+        // dcm.start(true, true);
+    </script>
+</body>
+
+</html>

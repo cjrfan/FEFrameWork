@@ -1,0 +1,16 @@
+{
+    "name": "app",
+    "main": "html/index.html",
+    "version": "1.0.0",
+    "window": {
+        "toolbar": false,
+        "show": true,
+        "icon": "img/M.png",
+        "width": 800,
+        "height": 550
+    },
+    "dependencies": {
+        "highlight": "^0.2.4",
+        "marked": "^0.3.7"
+    }
+}

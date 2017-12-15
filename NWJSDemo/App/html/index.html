@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开发 Markdown 应用</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="col main">
+            <textarea id="editor" class="editor"></textarea>
+        </div>
+        <div id="preview" class="col preview"></div>
+    </div>
+
+    <input style="display:none;" id="openFileDialog" type="file" accept=".md" />
+    <input style="display:none;" id="saveFileDialog" type="file" nwsaveas="file.md" accept=".md" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/taboverride.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="../js/editor.js"></script>
+</body>
+
+</html>

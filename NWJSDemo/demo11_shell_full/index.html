@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>shell 测试</h1>
+    <button onclick="openInexplorer()">在默认浏览器中打开某网站</button>
+    <button onclick="openPdf()">打开txt</button>
+    <button onclick="showPdfInFloder()">打开rar所在的文件夹</button>
+    <script>
+        var gui = require('nw.gui');
+        var shell = gui.Shell;
+        function openInexplorer() {
+            shell.openExternal('http://www.baidu.com');
+        }
+        function openPdf() {
+            shell.openItem('F:\\1.txt');
+        }
+        function showPdfInFloder() {
+            shell.showItemInFolder('F:\\cjrfan\\ui-demo.rar');
+        }
+    </script>
+</body>
+
+</html>

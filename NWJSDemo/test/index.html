@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入URL地址：
+    <input type="url" id="url" value="" />
+    <button id="get">获取页面标题</button>
+    <hr>
+    <div id="res"></div>
+    <script>
+        var btn = document.getElementById('get'),
+            res = document.getElementById('res');
+        btn.addEventListener('click', function (e) {
+            var url = document.getElementById('url').value,
+                xml = new XMLHttpRequest();
+            xml.onreadystatechange = function () {
+                if (xml.readyState == 4) {
+                    todo(xml.responseText);
+                }
+            };
+            xml.open('GET', url, true);
+            xml.send();
+        }, false);
+
+        function todo(data) {
+            var title = data.match(/<title>([\s\S]*)<\/title>/);
+            res.innerText = title[1];
+        }
+    </script>
+</body>
+
+</html>

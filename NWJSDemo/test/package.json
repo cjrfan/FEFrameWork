@@ -1,0 +1,11 @@
+{
+    "name": "test_demo",
+    "main": "index.html",
+    "author": "cjrfan",
+    "window": {
+        "title": "第一个应用",
+        "toolbar": false,
+        "width": 500,
+        "height": 350
+    }
+}
