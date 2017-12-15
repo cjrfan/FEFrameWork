@@ -3,10 +3,10 @@ var marked = require('marked');
 var fs = require('fs');
 var win = gui.Window.get();
 var is_open = true;
+var current_file_path;
 
 function reload() {
     var renderer = new marked.Renderer();
-
     marked.setOptions({
         renderer: renderer,
         gfm: true,
@@ -31,17 +31,17 @@ function loadText(text) {
     var editor = $('#editor');
     editor.val(text);
     reload();
-    // var editor_scroll = $('#editor')[0].scrollHeight;
-    // var preview_scroll = $('#preview')[0].scrollHeight;
-    // $('#editor').off('scroll');
-    // $('#editor').on('scroll', function (e) {
-    //     var top = parseInt(($(this).scrollTop() / editor_scroll) * preview_scroll);
-    //     $('#preview').scrollTop(top);
-    // });
-    $('#preview').on('scroll', function (e) {
-        var top = parseInt(($(this).scrollTop() / preview_scroll) * editor_scroll);
-        $('#editor').scrollTop(top);
+    var editor_scroll = $('#editor')[0].scrollHeight + $('#editor').height();
+    var preview_scroll = $('#preview')[0].scrollHeight + $('#preview').height();
+    $('#editor').off('scroll');
+    $('#editor').on('scroll', function (e) {
+        var top = parseInt(($(this).scrollTop() / editor_scroll) * preview_scroll);
+        $('#preview').scrollTop(top);
     });
+    // $('#preview').on('scroll', function (e) {
+    //     var top = parseInt(($(this).scrollTop() / preview_scroll) * editor_scroll);
+    //     $('#editor').scrollTop(top);
+    // });
 }
 
 function loadFile(file) {
@@ -56,6 +56,8 @@ function loadFile(file) {
 function chooseFile(name, callback) {
     var chooser = $(name);
     chooser.change(function (evt) {
+        current_file_path = this.value;
+        console.log(this.value);
         if (typeof callback === 'function') {
             callback($(this).val());
         }
@@ -63,6 +65,17 @@ function chooseFile(name, callback) {
 
     chooser.trigger('click');
 }
+
+function writeFile(filename) {
+    fs.writeFile(filename, $('#editor').val(), function (err) {
+        if (err) {
+            return console.log(err);
+        } else {
+            return alert('文件已保存！');
+        }
+    });
+}
+
 
 function initMenu() {
     var menubar = gui.Menu({
@@ -73,6 +86,8 @@ function initMenu() {
     var fileMenu = gui.Menu();
     fileMenu.append(gui.MenuItem({
         label: '新建文件',
+        key: "n",
+        modifiers: "ctrl",
         click: function () {
             loadText('');
             $('#openFileDialog').val('');
@@ -80,6 +95,8 @@ function initMenu() {
     }));
     fileMenu.append(gui.MenuItem({
         label: '打开文件',
+        key: "o",
+        modifiers: "ctrl",
         click: function () {
             chooseFile("#openFileDialog", function (filename) {
                 loadFile(filename);
@@ -88,23 +105,26 @@ function initMenu() {
     }));
 
     fileMenu.append(gui.MenuItem({
-        label: '保存',
+        label: '另存为',
+        key: "s",
+        modifiers: "ctrl-shift",
         click: function () {
-            chooseFile("#saveFileDialog", function (filename) {
-                var editor = $('#editor');
-                fs.writeFile(filename, editor.val(), function (err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        return alert('文件已保存！');
-                    }
-                });
+            if ($('#editor').val().trim() == '') return;
+            fs.exists(current_file_path, function (exists) {
+                if (exists) {
+                    writeFile(current_file_path);
+                } else {
+                    chooseFile("#saveFileDialog", function (filename) {
+                        writeFile(filename);
+                    });
+                }
             });
         }
     }));
 
     fileMenu.append(gui.MenuItem({
         label: '退出',
+        key: "Esc",
         click: function () {
             gui.App.quit();
         }
@@ -150,6 +170,7 @@ function showTray() {
         icon: 'img/M2.png'
     });
     tray.tooltip = 'hello Markdown';
+    // tray.icon = 'img/M.png';
 
     var menu = gui.Menu();
     menu.append(gui.MenuItem({

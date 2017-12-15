@@ -1,12 +1,12 @@
 var gui = require('nw.gui');
 var win = nw.Window.get();
-win.on('minimize', function () {
-    console.log('window is minimized');
-    var element = document.createElement('div');
-    element.appendChild(document.createTextNode('窗口最小化'));
-    document.body.appendChild(element);
-});
-win.minimize();
+// win.on('minimize', function () {
+//     console.log('window is minimized');
+//     var element = document.createElement('div');
+//     element.appendChild(document.createTextNode('窗口最小化'));
+//     document.body.appendChild(element);
+// });
+// win.minimize();
 // win.removeAllListeners('minimize');//去除最小化监听事件
 
 // var new_win = nw.Window.get(
@@ -102,3 +102,28 @@ function takeSnapshot() {
         });
     }, 'png');
 }
+
+// win.moveTo(800,400);
+// win.moveBy(100,200);
+// win.resizeTo(400, 200);
+// win.resizeBy(100, 100)
+// win.focus()
+// win.blur()
+// win.show()
+// win.hide()
+
+// win.on('close', function () {
+//     this.hide(); // 阻止关闭窗口
+//     console.log("We're closing...");
+//     this.close(true); // 强制关闭窗口
+// });
+
+// win.close();
+
+// win.reload()
+// win.maximize()
+// win.minimize()
+// win.restore()
+// win.enterFullscreen()
+// win.leaveFullscreen()
+// win.toggleFullscreen()
