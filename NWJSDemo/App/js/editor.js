@@ -31,12 +31,21 @@ function loadText(text) {
     var editor = $('#editor');
     editor.val(text);
     reload();
+    // var editor_scroll = $('#editor')[0].scrollHeight;
+    // var preview_scroll = $('#preview')[0].scrollHeight;
+    // $('#editor').off('scroll');
+    // $('#editor').on('scroll', function (e) {
+    //     var top = parseInt(($(this).scrollTop() / editor_scroll) * preview_scroll);
+    //     $('#preview').scrollTop(top);
+    // });
+    $('#preview').on('scroll', function (e) {
+        var top = parseInt(($(this).scrollTop() / preview_scroll) * editor_scroll);
+        $('#editor').scrollTop(top);
+    });
 }
 
 function loadFile(file) {
-    console.log(file)
     fs.readFile(file, 'utf8', function (err, data) {
-        console.log(data);
         if (err) {
             return console.log(err);
         }

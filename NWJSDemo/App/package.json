@@ -10,7 +10,6 @@
         "height": 550
     },
     "dependencies": {
-        "highlight": "^0.2.4",
         "marked": "^0.3.7"
     }
 }
